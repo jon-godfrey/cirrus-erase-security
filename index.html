@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cirrus Erase — Security Contacts</title>
+  <meta name="description" content="Security contacts for Cirrus Erase. Report vulnerabilities to security@cirruserase.com." />
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+           max-width: 720px; margin: 4em auto; padding: 0 1em; line-height: 1.55;
+           color: #222; }
+    h1 { font-size: 2em; margin-bottom: 0.2em; }
+    h2 { margin-top: 2em; border-bottom: 1px solid #ddd; padding-bottom: 0.3em; }
+    code { background: #f4f4f4; padding: 0.1em 0.35em; border-radius: 3px;
+           font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 0.95em; }
+    .fingerprint { font-family: 'SF Mono', Menlo, Consolas, monospace;
+                   background: #f9f9f9; padding: 0.6em 0.8em; border-radius: 4px;
+                   border-left: 3px solid #0050b3; overflow-x: auto;
+                   color: #888; font-style: italic; }
+    .contact-block { border: 1px solid #e5e5e5; border-radius: 6px;
+                     padding: 1em 1.2em; margin: 1em 0; background: #fafafa; }
+    .primary { border-left: 4px solid #0050b3; }
+    .secondary { border-left: 4px solid #888; }
+    .note { color: #666; font-size: 0.9em; font-style: italic; }
+    .bootstrap-banner { background: #fff8e1; border: 1px solid #f0c200;
+                        padding: 0.8em 1em; border-radius: 4px; margin: 1.5em 0; }
+    footer { margin-top: 4em; padding-top: 1em; border-top: 1px solid #ddd;
+             color: #888; font-size: 0.85em; }
+  </style>
+</head>
+<body>
+
+<h1>Cirrus Erase — Security</h1>
+
+<p>This page is the canonical public source for Cirrus Erase security contacts.
+   If you've found a vulnerability, please report it privately via one of the
+   channels below. Do not file a public GitHub issue for security reports.</p>
+
+<div class="bootstrap-banner">
+  <strong>Note (22 May 2026):</strong> PGP key infrastructure is being provisioned. Until both fingerprints are published below, please send security reports as plain email to <a href="mailto:security@cirruserase.com">security@cirruserase.com</a>; we will respond and arrange a secure channel from there. This banner will be removed when PGP keys are live.
+</div>
+
+<h2>Contacts</h2>
+
+<div class="contact-block primary">
+  <h3 style="margin-top:0">Primary</h3>
+  <p><strong>Email:</strong> <a href="mailto:security@cirruserase.com">security@cirruserase.com</a></p>
+  <p><strong>PGP fingerprint:</strong></p>
+  <div class="fingerprint">TBD — being provisioned</div>
+  <p class="note">This mailbox routes to the Cirrus Erase team's group inbox.
+     It is the stable, long-lived primary contact; this address will not change.</p>
+</div>
+
+<div class="contact-block secondary">
+  <h3 style="margin-top:0">Secondary</h3>
+  <p><strong>Name:</strong> Jon Godfrey</p>
+  <p><strong>Email:</strong> <a href="mailto:jon.a.godfrey@gmail.com">jon.a.godfrey@gmail.com</a></p>
+  <p><strong>PGP fingerprint:</strong></p>
+  <div class="fingerprint">TBD — being provisioned</div>
+  <p class="note">Independent backup contact, running on infrastructure separate
+     from <code>cirruserase.com</code>. Use this only if the primary is unreachable.
+     This contact may be rotated; the canonical current value is whatever this page shows.</p>
+</div>
+
+<h2>What to include in a report</h2>
+
+<ul>
+  <li>A clear description of the issue.</li>
+  <li>The affected Cirrus version (in <code>VERSION</code> at the repo root, or
+      visible at <code>http://&lt;lan-server&gt;:8080/api/version</code> on a deployed LAN Server).</li>
+  <li>Steps to reproduce, with logs, captures, or screenshots where applicable.</li>
+  <li>Your assessment of severity (we'll do our own assessment too).</li>
+  <li>Credit preference: how you'd like to be named (or "anonymous").</li>
+</ul>
+
+<h2>What to expect</h2>
+
+<ul>
+  <li><strong>Acknowledgement</strong> — within 5 business days.</li>
+  <li><strong>Initial assessment</strong> — within 10 business days.</li>
+  <li><strong>Coordinated disclosure</strong> — by mutual agreement, typically 90 days from acknowledgement.</li>
+</ul>
+
+<h2>Boot-chain integrity</h2>
+
+<p>Cirrus Erase ships a Microsoft-signed UEFI shim signed under the
+   <strong>"Cirrus Erase"</strong> vendor identity. The shim signature can be inspected with
+   <code>sbverify</code> or <code>pesign</code>.</p>
+
+<p>If you find a binary attributed to Cirrus Erase that fails signature verification
+   against the Microsoft UEFI CA, report it via the primary contact above — this would
+   indicate either a key compromise or a binary-substitution attack, both of which we
+   treat as the highest severity.</p>
+
+<p>For the record:</p>
+<ul>
+  <li>The Cirrus Erase shim <strong>never</strong> invokes shim's MOK-enrolment pathway.
+      It never writes to a target machine's UEFI NVRAM. If you observe MOK-enrolment behaviour
+      from a Cirrus Erase boot session, that is a defect.</li>
+  <li>The ADISA-certified Erase <code>.so</code> is published with a known SHA-256. Reports of
+      <code>.so</code> substitution or modification at runtime are highest priority.</li>
+</ul>
+
+<h2>Published advisories</h2>
+
+<p>Past security advisories are listed at <a href="/advisories">/advisories</a>.</p>
+
+<footer>
+  <p>Last updated: <strong>2026-05-22</strong>.</p>
+  <p>This page is referenced from the Cirrus Erase
+     <a href="https://github.com/rhboot/shim-review">shim-review</a> submission as the
+     authoritative source of current secondary-contact information.</p>
+</footer>
+
+</body>
+</html>
